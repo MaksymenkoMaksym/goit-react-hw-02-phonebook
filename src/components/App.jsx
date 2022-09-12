@@ -5,16 +5,15 @@ import ContactsList from './ContactsList/ContactsList';
 // model.id = nanoid() //=> "V1StGXR8_Z5jdHi6B-myT"
 export class App extends Component {
   state = {
-    contacts: ["alla"],
-    name: ''
-  }
+    contacts: [],
+    name: '',
+  };
 
-  saveContactToBook = (contact) => {
-    this.setState((prevState) => {
-      return prevState.contacts.push(contact);
-    }
-    )
-  }
+  saveContactToBook = contact => {
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, contact],
+    }));
+  };
   render() {
     return (
       <div
@@ -24,7 +23,7 @@ export class App extends Component {
           justifyContent: 'center',
           alignItems: 'center',
           fontSize: 40,
-          color: '#010101'
+          color: '#010101',
         }}
       >
         <h1>PhoneBook</h1>
@@ -33,4 +32,4 @@ export class App extends Component {
       </div>
     );
   }
-};
+}
