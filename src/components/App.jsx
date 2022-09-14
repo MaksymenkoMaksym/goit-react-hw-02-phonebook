@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import React, { Component } from 'react';
 import PhoneBookForm from './PhoneBookForm/PhoneBookForm';
 import ContactsList from './ContactsList/ContactsList';
@@ -12,17 +13,15 @@ export class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
-    name: '',
-    number: '',
     filter: '',
   };
 
-  saveContactToBook = user => {
+  onInputContact = user => {
     const { contacts } = this.state;
-
     if (contacts.some(contact => contact.name === user.name)) {
-      return alert('BOOM');
+      return alert(`${user.name} is already in contacts.`);
     }
+    user.id = nanoid();
 
     this.setState(prevState => ({
       contacts: [...prevState.contacts, user],
@@ -43,34 +42,18 @@ export class App extends Component {
     this.setState({ filter: res });
   };
 
-  onClickDelete = event => {
-    const index = [...event.parentNode.parentNode.children].indexOf(
-      event.parentNode
-    );
-    this.setState(prevState => {
-      prevState.contacts.splice(index, 1);
-
-      return {
-        contacts: [...prevState.contacts],
-      };
-    });
+  onClickDelete = id => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
+    }));
   };
   render() {
     return (
-      <div
-        style={{
-          height: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'column',
-          fontSize: 40,
-          color: '#010101',
-        }}
-      >
+      <div>
         <Section title="PhoneBook">
-          <PhoneBookForm onInputContact={this.saveContactToBook} />
+          <PhoneBookForm onInputContact={this.onInputContact} />
         </Section>
+
         <Section title="Contacts">
           <InputSearch
             nameSearch="Find contacts by name"

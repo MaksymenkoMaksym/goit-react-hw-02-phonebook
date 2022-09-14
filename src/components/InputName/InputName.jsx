@@ -1,11 +1,25 @@
-const InputName = () => (
+const InputName = ({
+  mainTitle,
+  type,
+  name,
+  title,
+  pattern,
+  defaultValue,
+  handleChange,
+  value,
+}) => (
+  <label>
+    <span>{mainTitle}</span>
     <input
-        type="text"
-        name="name"
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        required
-    // onChange={(e) => console.log(e.target.value)}
-    />)
+      type={type}
+      name={name}
+      pattern={pattern}
+      title={title}
+      value={value}
+      onChange={handleChange}
+      required
+    />
+  </label>
+);
 
 export default InputName;

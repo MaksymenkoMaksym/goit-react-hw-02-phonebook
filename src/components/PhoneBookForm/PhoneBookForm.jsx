@@ -1,33 +1,47 @@
-import { nanoid } from 'nanoid';
-import InputName from '../InputName/InputName';
-import InputTel from 'components/InputTel/InputTel';
+import React, { Component } from 'react';
 
-const PhoneBookForm = ({ onInputContact }) => {
-  function handleSubmit(e) {
+import InputName from '../InputName/InputName';
+
+class PhoneBookForm extends Component {
+  state = {
+    name: '',
+    number: '',
+  };
+
+  handleSubmit = e => {
     e.preventDefault();
-    const id = nanoid();
-    const name = e.target.name.value;
-    const number = e.target.number.value;
-    const user = {
-      id,
-      name,
-      number,
-    };
-    onInputContact(user);
+    this.props.onInputContact(this.state);
+  };
+  handleChange = evt => {
+    this.setState({ [evt.target.name]: evt.target.value });
+  };
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <InputName
+          type="text"
+          name="name"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          mainTitle="Name"
+          defaultValue="Bob"
+          value={this.state.name}
+          handleChange={this.handleChange}
+        />
+        <InputName
+          type="tel"
+          name="number"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          mainTitle="Number"
+          defaultValue="+1"
+          value={this.state.number}
+          handleChange={this.handleChange}
+        />
+        <button type="submit">Add Contact</button>
+      </form>
+    );
   }
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        <span>Name</span>
-        <InputName />
-      </label>
-      <label>
-        <span>Number</span>
-        <InputTel />
-      </label>
-      <button type="submit">Add Contact</button>
-    </form>
-  );
-};
+}
 
 export default PhoneBookForm;
