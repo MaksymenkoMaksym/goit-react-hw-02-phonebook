@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Label, Span, Input } from './Input.styled';
 const InputName = ({
   mainTitle,
@@ -5,7 +7,6 @@ const InputName = ({
   name,
   title,
   pattern,
-  defaultValue,
   handleChange,
   value,
 }) => (
@@ -22,5 +23,13 @@ const InputName = ({
     />
   </Label>
 );
-
+InputName.propTypes = {
+  mainTitle: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  pattern: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+};
 export default InputName;

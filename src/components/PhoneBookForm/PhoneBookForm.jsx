@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Form } from './PhoneBookForm.styled';
 import { Button } from 'components/ContactsList/ContactList.styled';
@@ -45,4 +46,7 @@ class PhoneBookForm extends Component {
   }
 }
 
+PhoneBookForm.propTypes = {
+  onInputContact: PropTypes.func.isRequired,
+};
 export default PhoneBookForm;

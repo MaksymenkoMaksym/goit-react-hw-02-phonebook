@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Label, Input, Span } from 'components/InputName/Input.styled';
 
 const InputSearch = ({ nameSearch, onSearchName }) => {
@@ -12,5 +14,8 @@ const InputSearch = ({ nameSearch, onSearchName }) => {
     </Label>
   );
 };
-
+InputSearch.propTypes = {
+  nameSearch: PropTypes.string.isRequired,
+  onSearchName: PropTypes.func.isRequired,
+};
 export default InputSearch;
