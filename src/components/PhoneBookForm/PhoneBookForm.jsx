@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import { Form } from './PhoneBookForm.styled';
+import { Button } from 'components/ContactsList/ContactList.styled';
 import InputName from '../InputName/InputName';
 
 class PhoneBookForm extends Component {
@@ -17,7 +18,7 @@ class PhoneBookForm extends Component {
   };
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         <InputName
           type="text"
           name="name"
@@ -38,8 +39,8 @@ class PhoneBookForm extends Component {
           value={this.state.number}
           handleChange={this.handleChange}
         />
-        <button type="submit">Add Contact</button>
-      </form>
+        <Button type="submit">Add Contact</Button>
+      </Form>
     );
   }
 }

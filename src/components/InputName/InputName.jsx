@@ -1,3 +1,4 @@
+import { Label, Span, Input } from './Input.styled';
 const InputName = ({
   mainTitle,
   type,
@@ -8,9 +9,9 @@ const InputName = ({
   handleChange,
   value,
 }) => (
-  <label>
-    <span>{mainTitle}</span>
-    <input
+  <Label>
+    <Span>{mainTitle}</Span>
+    <Input
       type={type}
       name={name}
       pattern={pattern}
@@ -19,7 +20,7 @@ const InputName = ({
       onChange={handleChange}
       required
     />
-  </label>
+  </Label>
 );
 
 export default InputName;
